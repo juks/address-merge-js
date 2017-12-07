@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merge test</title>
+    <script src="merge.js"></script>
+</head>
+<body>
+    <script>
+        // name      адрес
+        // lat       широта
+        // lon       долгота
+        // weight коэффициент точности координат
+        var elements = geoMerge([
+            new address({name: 'лубянская кажется площадь', lat: 55.759664, lon: 37.626690, weight: 0}),
+            // Если поменять предыдущее значение на это -- сработает фактор расстояния и результатов станет на один больше
+                                                                         // lon: 38.626790
+            new address({name: 'площадь лубянская 5 корп1', lat: 55.759664, lon: 37.626790, weight: 0}),
+            new address({name: 'плОщадь лУбянская дом 5 корп1', lat: 55.759664, lon: 37.626795, weight: 1}),
+            new address({name: 'лубянская 5к1', lat: 55.759664, lon: 37.626795, weight: 1}),
+
+            new address({name: 'Марксистская улица, 4', lat: 55.739950, lon: 37.656371, weight: 1}),
+            new address({name: 'Марксистская улица, 4с2', lat: 55.739950, lon: 37.656371, weight: 0}),
+            new address({name: 'Марксистская улица, 4 строение 2', lat: 55.739950, lon: 37.656371, weight: 1}),
+            new address({name: 'Россия, Москва, Марксистская улица, 4, строение 2', lat: 55.739950, lon: 37.656371, weight: 1}),
+
+            new address({name: 'Тверская ул., 4, Москва, Россия, 125009', lat: 55.739950, lon: 37.656371, weight: 1}),
+            new address({name: 'г Москва, ул Тверская-Ямская 4-Я', lat: 55.739950, lon: 37.656371, weight: 1}),
+
+        ]);
+
+        for (var i in elements) {
+            document.body.innerHTML += elements[i].name + '<br>';
+        }
+    </script>
+</body>
+</html>
